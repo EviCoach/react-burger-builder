@@ -5,10 +5,14 @@ import classes from './Toolbar.module.css'
 
 const toolbar = (props) => (
     <header className={classes.Toolbar}>
-        <Logo />
-        <div style={{ marginRight: 'auto', marginLeft: '16px' }}>Menu</div>
-        <nav>
-            <NavigationItems/>  
+        <div className={classes.Logo}>
+            <Logo/>
+        </div>
+        <div
+            style={{ marginRight: 'auto', marginLeft: '16px' }}
+        onClick={props.toggleDrawer}>Menu</div>
+        <nav className={classes.DesktopOnly}>
+            <NavigationItems />
         </nav>
     </header>
 )
