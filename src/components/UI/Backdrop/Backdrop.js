@@ -4,7 +4,13 @@ import React from 'react'
 import classes from './Backdrop.module.css'
 
 const backdrop = (props) => {
-    const value = props.show ? <div className={classes.Backdrop}></div> : null
+    const value =
+        props.show
+            ? <div
+                className={classes.Backdrop}
+                onClick={props.clicked}>
+            </div>
+            : null
     return value
 }
 
