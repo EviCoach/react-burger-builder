@@ -15,16 +15,22 @@ class Layout extends Holder {
         })
     }
 
-    toggleDrawer = () => {
-        this.setState({
-            showSideDrawer: !this.state.showSideDrawer
+    sideDrawerToggleHandler = () => {
+        // this.setState({
+        //     due to the asynchronous form of setState
+        //     this may lead to unexpected outcome
+        //     showSideDrawer: !this.state.showSideDrawer
+        // })
+
+        this.setState((previousState) => {
+            return { showSideDrawer: !this.state.showSideDrawer }
         })
     }
 
     render() {
         return (
             <Auxiliary>
-                <Toolbar toggleDrawer={this.toggleDrawer} />
+                <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
                 <SideDrawer
                     open={this.state.showSideDrawer}
                     closed={this.sideDrawerClosedHandler} />
