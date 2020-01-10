@@ -5,7 +5,6 @@ import classes from './Burger.module.css'
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
 
 const burger = (props) => {
-    console.log('coming from burger', props)
     let transformedIngredients = Object.keys(props.ingredients)
         .map(ingredientsKey => {
             return [
@@ -17,16 +16,17 @@ const burger = (props) => {
                     type={ingredientsKey} />
             })
         }).reduce((arr, el) => {
-            return arr.concat(el).reverse()
+            return arr.concat(el)
+            // .reverse()
         }, [])
     if (transformedIngredients.length === 0) {
         transformedIngredients = <p>Please start adding ingredients</p>
     }
     return (
         <div className={classes.Burger}>
-            <BurgerIngredient type="bread-top"/>
+            <BurgerIngredient type="bread-top" />
             {transformedIngredients}
-            <BurgerIngredient type="bread-bottom"/>
+            <BurgerIngredient type="bread-bottom" />
         </div>
     )
 }

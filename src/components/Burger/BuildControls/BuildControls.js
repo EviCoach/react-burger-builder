@@ -22,9 +22,9 @@ const buildControls = (props) => {
             />
         ))}
         {/* <Link to="/checkout"> */}
-            <button className={classes.OrderButton}
-                disabled={!props.purchasable}
-                onClick={props.ordered}>Order Now</button>
+        <button className={classes.OrderButton}
+            disabled={!props.purchasable}
+            onClick={props.ordered}>Order Now</button>
         {/* </Link> */}
     </div>)
 };

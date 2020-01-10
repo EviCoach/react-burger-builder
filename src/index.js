@@ -1,11 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+// applyMiddleware helps us add our own middleware to the store
+// compose allows us to combine enhancers
+// combineReducers allows us to combine reducers
+import { createStore, applyMiddleware, compose } from 'redux'
+
 import './index.css';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom'
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
+import reducer from './store/reducer'
 
-const app = <BrowserRouter><App/></BrowserRouter>
+const logger = store => {
+    return next => {
+        return action => {
+            console.log('[Middleware] Dispatching', action)
+            const result = next(action);
+            console.log('[Middleware] next state', store.getState())
+            return result
+        }
+    }
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// you can pass a list of middleware to applyMiddleware,
+// they will be executed in that order
+const store = createStore(reducer, composeEnhancers(
+    applyMiddleware(logger /** anotherMiddlewareCanBeHere */)
+))
+
+
+// the provider should wrap everything
+const app = <Provider store={store}>
+    <BrowserRouter><App /></BrowserRouter>
+</Provider>
 
 ReactDOM.render(app, document.getElementById('root'));
 
