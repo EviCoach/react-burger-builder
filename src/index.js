@@ -10,7 +10,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker'
-import reducer from './store/reducer'
+import burgerBuilderReducer from './store/reducers/burgerBuilder'
 
 // const logger = store => {
 //     return next => {
@@ -27,7 +27,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // you can pass a list of middleware to applyMiddleware,
 // they will be executed in that order
-const store = createStore(reducer,
+const store = createStore(burgerBuilderReducer,
     // composeEnhancers(
     // applyMiddleware(logger /** anotherMiddlewareCanBeHere */))
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
