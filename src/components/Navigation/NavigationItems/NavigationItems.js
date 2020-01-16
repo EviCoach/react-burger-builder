@@ -3,11 +3,14 @@ import NavigationItem from './NavigationItem/NavigationItem'
 import classes from './NavigationItems.module.css'
 
 
-const navigationItems = () => (
+const navigationItems = (props) => (
     <ul className={classes.NavigationItems}>
         <NavigationItem link="/">Burger Builder</NavigationItem>
-        <NavigationItem link="/orders">Orders</NavigationItem>
-        <NavigationItem link="/auth">Authenticate</NavigationItem>
+        {props.isAuth ? <NavigationItem link="/orders">Orders</NavigationItem> : null}
+        {props.isAuth ?
+            <NavigationItem link="/logout">logout</NavigationItem> :
+            <NavigationItem link="/auth">Authenticate</NavigationItem>
+        }
     </ul>
 )
 
